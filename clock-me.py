@@ -8,10 +8,11 @@ connection =  sqlite3.connect("data.sql")
 cursor = connection.cursor()
 
 
-cursor.execute("select * from dates;")
-existing_dates = cursor.fetchall()
+
 
 def update_tables(now): 
+    cursor.execute("select * from dates;")
+    existing_dates = cursor.fetchall()
     if (now,) not in existing_dates: 
         cursor.execute("INSERT INTO dates VALUES ('" + now + "');")
         cursor.execute("INSERT INTO data VALUES ('" + now + "', 0, 0);")
